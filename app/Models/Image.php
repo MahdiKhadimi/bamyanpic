@@ -34,7 +34,11 @@ class Image extends Model
 
     public function fileUrl(){
         
-        return $this->file;
+        return Storage::url($this->file);
+    }
+
+    public function link(){
+        return route('images.show',$this->slug);
     }
 
 }

@@ -5,3 +5,5 @@ Storage::makeDirectory('path')
 Storage::allFiles('folder')
 Storage::path('file')
 getimagesize()
+
+- Explicit Model Binding

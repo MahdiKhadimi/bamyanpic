@@ -10,7 +10,8 @@
       
         @foreach ($images as $image)
         <div>
-        <a href="" ><img src="storage/{{ $image->file}}" alt="{{ $image->title }}" width="250"></a>
+        <a href="{{ $image->link() }}" >
+          <img src="{{asset($image->file)}}" alt="{{ $image->title }}" width="250"></a>
         </div>
             
         @endforeach
