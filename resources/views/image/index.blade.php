@@ -23,6 +23,9 @@
         <a href="{{ $image->link() }}" >
           <img src="{{asset($image->fileUrl())}}" alt="{{ $image->title }}" width="250"></a>
         </div>
+        <div>
+          <a href="{{ route('images.edit',$image->id) }}">Edit</a>
+        </div>
             
         @endforeach
     
