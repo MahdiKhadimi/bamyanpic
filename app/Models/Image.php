@@ -11,12 +11,13 @@ class Image extends Model
 
     use HasFactory;
 
+    protected $fillable = [ 'file','slug','title','dimention','user_id','is_published','downloads_count','views_count',];
     public static function makeDirectory(){
 
         $folder = 'images/'.date('Y/m/d');
-
-        Storage::makeDirectory($folder);
-        
+        Storage::makeDirectory($folder);  
+              
+        return $folder;
         
     }
     public static function getDimention($image){
@@ -34,7 +35,7 @@ class Image extends Model
 
     public function fileUrl(){
         
-        return Storage::url($this->file);
+        return 'storage/'.$this->file;
     }
 
     public function link(){

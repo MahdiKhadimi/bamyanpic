@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
             if(strpos($image,".DS_Store")) continue;
             Image::factory()->create([
-                'file'=>'storage/'.$image,
+                'file'=>$image,
                 'dimention'=>Image::getDimention($image),
             ]);
         }

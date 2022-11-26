@@ -7,11 +7,21 @@
     <title>All Images</title>
 </head>
 <body>
-      
+
+    @if ($message = session('message'))
+    <div>
+      {{ $message }}
+    </div>
+        
+    @endif
+
+      <div>
+        <a href="{{ route('images.create') }}">Create Image</a>
+      </div>
         @foreach ($images as $image)
         <div>
         <a href="{{ $image->link() }}" >
-          <img src="{{asset($image->file)}}" alt="{{ $image->title }}" width="250"></a>
+          <img src="{{asset($image->fileUrl())}}" alt="{{ $image->title }}" width="250"></a>
         </div>
             
         @endforeach
