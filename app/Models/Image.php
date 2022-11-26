@@ -25,4 +25,16 @@ class Image extends Model
 
         return $width."*".$height;
     }
+
+    public static function scopePublished($query){
+        
+        return $query->where('is_published',true);
+        
+    }
+
+    public function fileUrl(){
+        
+        return $this->file;
+    }
+
 }
