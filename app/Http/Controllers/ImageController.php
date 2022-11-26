@@ -41,4 +41,11 @@ class ImageController extends Controller
 
         return \redirect()->route('images.index')->with('message','Image has been updated successfully');
     }
+
+    public function destroy(Image $image)
+    {
+         $image->delete();
+
+        return \redirect()->route('images.index')->with('message','Image has been deleted successfully');
+    }
 }

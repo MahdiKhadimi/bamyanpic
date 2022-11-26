@@ -42,4 +42,14 @@ class Image extends Model
         return route('images.show',$this->slug);
     }
 
+    public static function booted()
+    {
+
+        static::deleted(function($image){
+            
+            Storage::delete($image->file);
+            
+        });
+    }
+
 }
