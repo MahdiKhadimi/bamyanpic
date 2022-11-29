@@ -1,6 +1,6 @@
 
-<form action="{{ route('images.create') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+<x-layout title="Upload new image">
+  <x-form action="{{ route('images.create') }}" method="POST" enctype="multipart/form-data">
     <div>
         <label for="file">Image </label>
             <input type="file" id="file" name="file">
@@ -19,6 +19,5 @@
         <button type="submit">Upload</button>
        
     </div>
-
-
-</form>
+ </x-form>
+</x-layout>

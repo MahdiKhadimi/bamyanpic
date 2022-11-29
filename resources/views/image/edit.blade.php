@@ -1,7 +1,7 @@
-
-<form action="{{ route('images.update',$image->id) }}" method="POST">
-    @csrf
-    @method('PUT')
+<x-layout title="Edit image">
+    
+<x-form action="{{ route('images.update',$image->id) }}" method="PUT">
+  
     <div style="width:400px">
         <img src="{{ asset($image->fileUrl()) }}" alt="$image->title">
     </div>
@@ -18,4 +18,5 @@
     </div>
 
 
-</form>
+</x-form>
+</x-layout>
