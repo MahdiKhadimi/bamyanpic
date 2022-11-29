@@ -33,7 +33,7 @@ class ImageRequest extends FormRequest
         
         return [
             'file'=>'required|image',
-            'title'=>'nullable'            
+            'title'=>'required'            
         ];
     }
 
