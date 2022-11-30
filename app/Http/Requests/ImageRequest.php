@@ -41,7 +41,7 @@ class ImageRequest extends FormRequest
     public function handleRequest()
     {
         $data = $this->validated()+[
-            'user_id'=>1,//$this->user()->id
+            'user_id'=>$this->user()->id,
             'is_published'=>1,
             
 

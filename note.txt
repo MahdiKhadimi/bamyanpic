@@ -12,3 +12,11 @@ getimagesize()
 Use use packages:
 - composer require laravel/ui 
 - php aritan ui bootstrap --auth
+
+
+User Role
+
+1- Admin
+2- Editor 
+3- Author
+

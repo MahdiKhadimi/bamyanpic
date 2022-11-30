@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\ImageRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -32,6 +33,7 @@ class ImageController extends Controller
     }
 
     public function edit(Image $image){
+       $this->authorize('edit-image',$image);
        
         return view('image.edit',compact('image'));
     }
@@ -44,6 +46,8 @@ class ImageController extends Controller
 
     public function destroy(Image $image)
     {
+        Gate::authorize('edit-image',$image);
+
          $image->delete();
 
         return \redirect()->route('images.index')->with('message','Image has been deleted successfully');
