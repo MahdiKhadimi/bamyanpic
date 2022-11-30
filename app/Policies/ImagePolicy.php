@@ -11,17 +11,47 @@ class ImagePolicy
 {
     use HandlesAuthorization;
 
-    public function edit(User $user, Image $image)
+    public function viewAny(User $user)
     {
-        return $user->id===$image->user_id || $user->role===Role::Aditor;
-    }
-    public function Update(User $user, Image $image)
-    {
-        return $user->id===$image->user_id || $user->role===Role::Aditor;
-    }
-    public function delete(User $user, Image $image)
-    {
-        return $user->id===$image->user_id;
+        return true;
     }
 
+   
+    public function view(User $user, Image $image)
+    {
+        return true;
+        
+    }
+
+    
+    public function create(User $user)
+    {
+        return true;
+        
+    }
+
+   
+    public function update(User $user, Image $image)
+    {
+        return $user->id===$image->user_id || $image->role===Role::Aditor;
+    }
+
+   
+    public function delete(User $user, Image $image)
+    {
+        return $user->id===$image->user_id || $image->role===Role::Aditor;
+
+    }
+
+   
+    public function restore(User $user, Image $image)
+    {
+        //
+    }
+
+    public function forceDelete(User $user, Image $image)
+    {
+        return $user->id===$image->user_id || $image->role===Role::Aditor;
+        
+    }
 }

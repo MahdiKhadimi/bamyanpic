@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
+    /**
+     * Class constructor.
+     */
+    public function __construct()
+    {
+         $this->authorizeResource(Image::class);  
+    }
+
     public function index(){
         $images = Image::published()->latest()->paginate(15)->withQueryString();
         
@@ -33,13 +41,15 @@ class ImageController extends Controller
     }
 
     public function edit(Image $image){
-       $this->authorize('edit',$image);
+
+        
+       //$this->authorize('edit',$image);
        
         return view('image.edit',compact('image'));
     }
 
     public function update(Image $image,ImageRequest $request){
-        $this->authorize('edit',$image);
+        // $this->authorize('edit',$image);
         $image->update($request->handleRequest());
 
         return \redirect()->route('images.index')->with('message','Image has been updated successfully');

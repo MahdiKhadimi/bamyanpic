@@ -14,6 +14,7 @@
                 <a href="{{ $image->link() }}" >
                   <img src="{{asset($image->fileUrl())}}" alt="{{ $image->title }}"  class="card-img-top">
                 </a>
+                  @if (Auth::check()&&Auth::user()->can('update',$image))
                   <div class="photo-buttons">
                     <div>
                        <a href="{{ route('images.edit',$image->id) }}" class="btn btn-sm btn-info me-2">Edit </a>
@@ -24,7 +25,10 @@
               
                       </x-form>
                   </div>
+                
+
                 </div>
+                @endif
                </div>
           </div>
       @endforeach  
