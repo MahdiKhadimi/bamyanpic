@@ -30,18 +30,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
         
-       Gate::define('edit-image',function(User $user,Image $image){
-           return $user->id===$image->user_id || $user->role===Role::Aditor;
-       });
-
-       Gate::define('delete-image',function(User $user,Image $image){
-        return $user->id===$image->user_id;
-       });
-        
-      Gate::before(function($user, $ability){
-         if($user->role===Role::Admin){
-             return true;
-         }
-      });
+       
+      
     }
 }
