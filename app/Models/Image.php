@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,12 @@ class Image extends Model
     use HasFactory;
 
     protected $fillable = [ 'file','slug','title','dimention','user_id','is_published','downloads_count','views_count',];
+   
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public static function makeDirectory(){
 
         $folder = 'images/'.date('Y/m/d');
@@ -52,4 +59,9 @@ class Image extends Model
         });
     }
 
+   public function uploadDate()
+   {
+       return $this->created_at->diffForHumans();
+   }
+       
 }
