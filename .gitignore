@@ -1,10 +1,10 @@
+note.txt
 /node_modules
 /public/hot
 /public/storage
 /storage/*.key
 /vendor
 .env
-note.txt
 .env.backup
 .phpunit.result.cache
 Homestead.json

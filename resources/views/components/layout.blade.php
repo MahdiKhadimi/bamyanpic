@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="In this app users upload images for free ">
     <meta name="author" content="Mahdi Khadimi Software Engineer">
-    <title>{{ $title }}} Bamyanpic</title>
+    <title>{{ $title }} | Bamyanpic</title>
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
