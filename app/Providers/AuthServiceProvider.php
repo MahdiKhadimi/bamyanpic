@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Policies\ImagePolicy;
+
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -15,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+       
     ];
 
     /**
@@ -26,8 +27,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('edit-image', [ImagePolicy::class,'edit']);
-        Gate::define('delete-image', [ImagePolicy::class,'delete']);
- 
-    }
+    }    
+    
 }

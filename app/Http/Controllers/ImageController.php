@@ -33,12 +33,13 @@ class ImageController extends Controller
     }
 
     public function edit(Image $image){
-       $this->authorize('edit-image',$image);
+       $this->authorize('edit',$image);
        
         return view('image.edit',compact('image'));
     }
 
     public function update(Image $image,ImageRequest $request){
+        $this->authorize('edit',$image);
         $image->update($request->handleRequest());
 
         return \redirect()->route('images.index')->with('message','Image has been updated successfully');
@@ -46,7 +47,7 @@ class ImageController extends Controller
 
     public function destroy(Image $image)
     {
-        Gate::authorize('edit-image',$image);
+        Gate::authorize('delete',$image);
 
          $image->delete();
 
