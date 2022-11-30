@@ -7,3 +7,8 @@ Storage::path('file')
 getimagesize()
 
 - Explicit Model Binding
+
+
+Use use packages:
+- composer require laravel/ui 
+- php aritan ui bootstrap --auth

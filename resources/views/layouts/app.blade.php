@@ -1,26 +1,29 @@
-@props([
-    'title'=>''
-])
 <!doctype html>
-<html lang="en">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="In this app users upload images for free ">
-    <meta name="author" content="Mahdi Khadimi Software Engineer">
-    <title>{{ $title }}} Bamyanpic</title>
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}">
-</head>
 
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-        <div class="container-fluid">  
-          <div class="container">
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <x-icon src="logo.svg" class="d-inline-block align-text-top color-light" style="width: 25px" />
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -38,14 +41,14 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item ms-2">
-                                    <a class="btn btn-outline-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
-                                <li class="nav-item ms-2">
-                                    <a class="btn btn-info" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -70,32 +73,11 @@
                     </ul>
                 </div>
             </div>
+        </nav>
 
-            {{--  <div class="d-flex">
-                <a href="{{ route('images.create') }}" class="btn btn-success">Create Image</a>
-                {{--  <a href='#' class="btn btn-outline-secondary me-2">Register</a>
-                <a href='#' class="btn btn-danger">Login</a>  --}}
-            </div>  
-        </div>
-    </nav>
-    <section>
-    {{ $slot }}
-     
-    </section>
-
-    <footer class="bg-light text-muted py-3 mt-5 border-top col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="container-fluid">
-            <p class="float-end mb-1">
-                <a href="#" class="text-decoration-none">Back to top</a>
-            </p>
-            <p>Bamyanpic provides beautiful, high quality & royalty free photos shared by creators everywhere.</p>
-            <p>&copy; 2021 Bamyanpic</p>
-        </div>
-    </footer>
-
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/npm.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/script.js') }}"></script>
-</body>  
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
 </html>
