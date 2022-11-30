@@ -36,7 +36,12 @@ class AppServiceProvider extends ServiceProvider
 
        Gate::define('delete-image',function(User $user,Image $image){
         return $user->id===$image->user_id;
-      });
+       });
         
+      Gate::before(function($user, $ability){
+         if($user->role===Role::Admin){
+             return true;
+         }
+      });
     }
 }
