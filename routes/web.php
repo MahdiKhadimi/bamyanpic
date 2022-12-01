@@ -21,9 +21,8 @@ use App\Http\Controllers\ShowImageController;
 Route::get('/',ListImageController::class)->name('images.all');
 Route::get('/images/{image}',ShowImageController::class)->name('images.show');
 
-Route::resource('images', ImageController::class)->except('show');
-
-Route::view('test-blade', 'test');
+Route::resource('/images', ImageController::class)->except('show','create');
+Route::get('/image/create',[ImageController::class,'create'])->name('image.create');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

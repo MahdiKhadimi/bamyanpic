@@ -1,4 +1,20 @@
 <x-layout title="free images">
+  <div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col">
+            <a href="{{ route('image.create') }}" class="btn btn-primary">
+                <x-icon src="upload.svg" alt="Upload" class="me-2"/>
+                <span>Upload</span>
+            </a>
+        </div>
+        <div class="col"></div>
+        <div class="col text-right">
+            <form class="search-form">
+                <input type="search" name="q" placeholder="Search..." aria-label="Search..." autocomplete="off">
+            </form>
+        </div>
+    </div>
+</div>
 
   <div class="container-fluid mt-4">   
   @if ($message = session('message'))

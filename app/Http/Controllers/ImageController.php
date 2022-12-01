@@ -26,15 +26,12 @@ class ImageController extends Controller
         return view('image.index',compact('images'));
     }
 
-    public function show(Image $image){
-        return view('image.show',compact('image'));
-    }
-
-    public function create(){
-        return view('image.create');
+    
+    public function create()
+    {
         
+        return view('image.create');
     }
-
     public function store(ImageRequest $request){
         Image::create($request->handleRequest());
 

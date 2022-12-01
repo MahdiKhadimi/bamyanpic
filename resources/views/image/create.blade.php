@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">Upload your photo</div>
                     <div class="card-body">
-                      <x-form action="{{ route('images.create') }}" method="POST" enctype="multipart/form-data">
+                      <x-form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="form-label" for="file">Photo</label>
                                 <input name="file" class="form-control @error('title')is-invalid @enderror " type="file" id="formFile" >
