@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\ImageSearchScope;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -66,11 +67,15 @@ class Image extends Model
             Storage::delete($image->file);
             
         });
+        
+        static::addGlobalScope(new ImageSearchScope);
     }
 
    public function uploadDate()
    {
        return $this->created_at->diffForHumans();
    }
+   
+  
        
 }

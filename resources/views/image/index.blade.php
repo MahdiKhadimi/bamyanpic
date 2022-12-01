@@ -9,8 +9,8 @@
         </div>
         <div class="col"></div>
         <div class="col text-right">
-            <form class="search-form">
-                <input type="search" name="q" placeholder="Search..." aria-label="Search..." autocomplete="off">
+            <form class="search-form" action="{{ route('images.index') }}">
+                <input type="search" name="q" placeholder="Search images by title" aria-label="Search..." autocomplete="off">
             </form>
         </div>
     </div>

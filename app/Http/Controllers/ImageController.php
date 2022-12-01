@@ -28,10 +28,10 @@ class ImageController extends Controller
 
     
     public function create()
-    {
-        
+    {    
         return view('image.create');
     }
+
     public function store(ImageRequest $request){
         Image::create($request->handleRequest());
 
