@@ -23,6 +23,9 @@
     {{ $message }}
   </x-alert>
   @endif
+  <div>
+    Your Uploaded Images
+  </div>
     <div class="row" data-masonry='{"percentPosition": true }'>
       @foreach ($images as $image)
           <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
