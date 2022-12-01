@@ -39,6 +39,15 @@ class Image extends Model
         return $query->where('is_published',true);
         
     }
+    
+    public function scopeVisibleFor($query,User $user)
+    {
+        if($user->role==='Admin'||$user->role==='Editor'){
+            return;
+        }
+
+        return $query->where('user_id',$user->id);
+    }
 
     public function fileUrl(){
         
