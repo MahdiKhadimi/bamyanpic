@@ -75,7 +75,17 @@ class Image extends Model
    {
        return $this->created_at->diffForHumans();
    }
-   
-  
+ 
+   public function updateViewsCount()
+   {
+       $viewsCount = $this->views_count;
+       if(request()->user()->id!==$this->user_id){
+           $viewsCount++;
+       }
+       $this->update([
+           'views_count'=>$viewsCount
+        ]);
+
+   }
        
 }

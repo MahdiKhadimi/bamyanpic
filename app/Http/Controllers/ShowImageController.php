@@ -10,6 +10,7 @@ class ShowImageController extends Controller
    
     public function __invoke(Image $image, Request $request)
     {
+        $image->updateViewsCount();
         return view('image-show',compact('image'));
     }
 }
