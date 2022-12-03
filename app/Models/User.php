@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Image;
+use App\Models\Comment;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -49,10 +50,16 @@ class User extends Authenticatable
         return $this->hasMany(Image::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     public function getImagesNumber()
     {
         $imagesNumber = $this->images()->published()->count();
 
         return $imagesNumber.' '.str()->plural('image',$imagesNumber);
     }
+
+
 }

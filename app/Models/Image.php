@@ -4,6 +4,7 @@ namespace App\Models;
 
 use auth;
 use App\Models\User;
+use App\Models\Comment;
 use App\Models\Scopes\ImageSearchScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -19,6 +20,11 @@ class Image extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
     
     public static function makeDirectory(){
@@ -85,6 +91,7 @@ class Image extends Model
        }else{
            $viewsCount++;
        }
+
        $this->update([
            'views_count'=>$viewsCount
         ]);
@@ -104,5 +111,6 @@ class Image extends Model
       ]);
    
     }
-       
+
+    
 }
