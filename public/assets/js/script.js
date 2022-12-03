@@ -1,65 +1,28 @@
-$(document).ready(function() {
-	
-	$("a#print").click(function() {
-		window.print();
-	});
-	
-	
-	window.setTimeout(function() {
-		$(".alert").slideUp(500);
-	}, 5000);
-	
-	
-	$("a.delete").click(function(event) {
-		var result = window.confirm("Are you sure you want to delete?");
-		if(!result) {
-			event.preventDefault();
-		}
-	});	  
-   
+$(document).ready(function () {
+    $("a#print").click(function () {
+        window.print();
+    });
 
-	let intervalTime  = $('#examTime').text();
-	function showTimer (){
+    window.setTimeout(function () {
+        $(".alert").slideUp(500);
+    }, 5000);
 
-		let examTime  = $('#examTime').text();
-	    examTime--
-		if(examTime==0){
-			$('#examResultSubmit').click();
-		}else{
-			$('#examTime').text(examTime)
-
-		}
-	
-	}
-
-	setInterval(showTimer,intervalTime*1000);
-   
+    $("a.delete").click(function (event) {
+        var result = window.confirm("Are you sure you want to delete?");
+        if (!result) {
+            event.preventDefault();
+        }
+    });
 });
 
-
-
-// This function use to validate checkboxes 
-function switchCheck(id){
-	let examId = id.split('.');
-	 examId = examId[0];
-	
-	 document.getElementById(examId+"."+1).checked=false;
-	 document.getElementById(examId+"."+2).checked=false;
-	 document.getElementById(examId+"."+3).checked=false;
-	 document.getElementById(examId+"."+4).checked=false;
-
-	 document.getElementById(id).checked=true;
+function downloadsCount(id) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("downloads-count").innerHTML =
+                this.responseText;
+        }
+    };
+    xhttp.open("GET", "../image/" + id, true);
+    xhttp.send();
 }
-
-
-
-
-
-
-
-//all ajax code here
-
-
-
-
-

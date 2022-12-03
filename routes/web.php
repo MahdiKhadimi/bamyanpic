@@ -23,6 +23,8 @@ Route::get('/images/{image}',ShowImageController::class)->name('images.show');
 
 Route::resource('/images', ImageController::class)->except('show','create');
 Route::get('/image/create',[ImageController::class,'create'])->name('image.create');
+Route::get('/image/{image}',[ImageController::class,'downloadsCount'])->name('images.download.count');
+Route::get('/images/download/{image}',[ImageController::class,'download'])->name('images.download');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', ListImageController::class)->name('home');

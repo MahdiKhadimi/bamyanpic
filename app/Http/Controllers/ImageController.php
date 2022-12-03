@@ -15,7 +15,7 @@ class ImageController extends Controller
      */
     public function __construct()
     {
-         $this->middleware('auth');
+         $this->middleware('auth')->except('download','downloadsCount');
          $this->authorizeResource(Image::class);  
     }
 
@@ -60,5 +60,17 @@ class ImageController extends Controller
          $image->delete();
 
         return \redirect()->route('images.index')->with('message','Image has been deleted successfully');
+    }
+
+    public function download(Image $image)
+    {
+        $image->updateDownloadsCount();
+        return Storage::download($image->file);
+       
+    }
+
+    public function downloadsCount(Image $image)
+    { 
+        return $image->downloads_count;
     }
 }

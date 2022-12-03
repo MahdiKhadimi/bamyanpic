@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Scopes\ImageSearchScope;
+use auth;
 use App\Models\User;
+use App\Models\Scopes\ImageSearchScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -79,7 +80,9 @@ class Image extends Model
    public function updateViewsCount()
    {
        $viewsCount = $this->views_count;
-       if(request()->user()->id!==$this->user_id){
+       if(auth::check()){
+        request()->user()->id!==$this->user_id?$viewsCount++: $viewsCount;
+       }else{
            $viewsCount++;
        }
        $this->update([
@@ -87,5 +90,19 @@ class Image extends Model
         ]);
 
    }
+
+   public function updateDownloadsCount()
+   {
+       
+      $downloadsCount = $this->downloads_count;
+    
+        $downloadsCount++;
+      
+    
+      $this->update([
+        'downloads_count'=>$downloadsCount
+      ]);
+   
+    }
        
 }
