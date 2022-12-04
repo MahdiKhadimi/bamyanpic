@@ -30,10 +30,10 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('image',function($value){
             
             if(\is_numeric($value)){
-                return Image::where('id',$value)->published()->firstOrFail();
+                return Image::where('id',$value)->with('likes')->published()->firstOrFail();
             }
 
-           return Image::where('slug',$value)->published()->firstOrFail();
+           return Image::where('slug',$value)->with('likes')->published()->firstOrFail();
 
         });
         

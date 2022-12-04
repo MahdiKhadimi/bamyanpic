@@ -26,3 +26,8 @@ function downloadsCount(id) {
     xhttp.open("GET", "../image/" + id, true);
     xhttp.send();
 }
+
+function likesCount(id) {
+    const userId = document.getElementById("like-user-id").value;
+    alert(userId);
+}

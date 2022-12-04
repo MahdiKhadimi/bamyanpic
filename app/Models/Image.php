@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use auth;
+use App\Models\Like;
 use App\Models\User;
 use App\Models\Comment;
 use App\Models\Scopes\ImageSearchScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Image extends Model
 {
@@ -25,6 +27,11 @@ class Image extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class,'image_id');
     }
     
     public static function makeDirectory(){
@@ -112,5 +119,27 @@ class Image extends Model
    
     }
 
+    public function likesCount($image_id)
+    {
+        return Like::where('image_id',$image_id)->sum('is_like');   
+        
+    }
+
+    public function checkLike($image_id)
+    {
+       
+        $user_id = auth::user()->id;
+        
+        try{
+        $likes = Like::where([
+            'image_id'=>$image_id,
+            'user_id'=>$user_id
+        ])->firstOrFail();
+        } catch(ModelNotFoundException $e){
+            return 0;
+        }
+
+        return $likes->is_like;
+    }
     
 }

@@ -23,19 +23,32 @@
                 </div>
 
                 <div class="d-flex justify-content-between py-3 border-top border-bottom">
-                    <div>
-                        <button type="button" title="Like mage" class="btn btn-primary">
+                    @if (auth::check())
+                        <div>
+                            <form action="{{ route('likes.update', $image->id) }}" method="post">
+                                @csrf
+                                @method('put')
+                                <button type="submit" class="btn btn-primary">
 
-                            <x-icon src="thumbs-up.svg" class="align-text-top" width="18" height="18" /> 150
+                                    @if ($image->checkLike($image->id))
+                                        <span class="fa fa-thumbs-down" id="likes-count" title="Like mage">
+                                            {{ $image->likesCount($image->id) }}
+                                        </span>
+                                        <input type="hidden" value="0" name="is_like">
+                                    @else
+                                        <span class="fa fa-thumbs-up"
+                                            id="likes-count">{{ $image->likesCount($image->id) }}
+                                        </span>
+                                        <input type="hidden" value="1" name="is_like">
+                                    @endif
+                                </button>
+                                <button type="button" title="Favorite mage" class="btn btn-danger">
 
-                        </button>
-                        <button type="button" title="Favorite mage" class="btn btn-danger">
-
-                            <x-icon src="heart.svg" alt="" width="18" height="18" />
-
-                        </button>
-                    </div>
-
+                                    <x-icon src="heart.svg" alt="" width="18" height="18" />
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                     <a href="{{ route('images.download', $image->id) }}" onclick="downloadsCount({{ $image->id }})"
                         title="Download" class="btn btn-success d-flex align-items-center" id="download">
                         <input type="hidden" id="input-download" value="{{ $image->id }}">
