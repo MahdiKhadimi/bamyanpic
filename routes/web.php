@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ListImageController;
 use App\Http\Controllers\ShowImageController;
 
@@ -29,11 +30,13 @@ Route::get('/image/create',[ImageController::class,'create'])->name('image.creat
 Route::get('/image/{image}',[ImageController::class,'downloadsCount'])->name('images.download.count');
 Route::get('/images/download/{image}',[ImageController::class,'download'])->name('images.download');
 
+
 Route::post('/comments',[CommentController::class,'store'])->name('comments.store');
 
 Route::put('/likes/{image}',[LikeController::class,'update'])->name('likes.update');
 
-
+Route::put('/favorites/{image}',[FavoriteController::class,'update'])->name('favorites.update');
+Route::get('favorites',[FavoriteController::class,'index'])->name('favorites.index');
 Auth::routes();
 
 Route::get('/home', ListImageController::class)->name('home');

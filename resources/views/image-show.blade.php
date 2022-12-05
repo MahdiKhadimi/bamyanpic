@@ -24,7 +24,7 @@
 
                 <div class="d-flex justify-content-between py-3 border-top border-bottom">
                     @if (auth::check())
-                        <div>
+                        <div class="col-md-3">
                             <form action="{{ route('likes.update', $image->id) }}" method="post">
                                 @csrf
                                 @method('put')
@@ -42,20 +42,42 @@
                                         <input type="hidden" value="1" name="is_like">
                                     @endif
                                 </button>
-                                <button type="button" title="Favorite mage" class="btn btn-danger">
-
-                                    <x-icon src="heart.svg" alt="" width="18" height="18" />
-                                </button>
                             </form>
                         </div>
+                        <div class="col-md-3">
+                            <form action="{{ route('favorites.update', $image->id) }}" method="post">
+                                @csrf
+                                @method('put')
+                                @if ($image->checkFavorite($image->id))
+                                    <button type="submit" title="Unfavorite" class="btn "
+                                        style="background-color: rgba(138, 101, 110, 0.936)">
+
+                                        <x-icon src="heart.svg" alt="favorite" width="18" height="18" />
+                                    </button>
+                                    <input type="hidden" value="0" name="is_favorite">
+                                @else
+                                    <button type="submit" title=" favorite" class="btn "
+                                        style="background-color: rgba(205, 15, 63, 0.936)">
+
+                                        <x-icon src="heart.svg" alt="favorite" width="18" height="18" />
+                                    </button>
+                                    <input type="hidden" value="1" name="is_favorite">
+                                @endif
+
+                            </form>
+
+                        </div>
                     @endif
-                    <a href="{{ route('images.download', $image->id) }}" onclick="downloadsCount({{ $image->id }})"
-                        title="Download" class="btn btn-success d-flex align-items-center" id="download">
-                        <input type="hidden" id="input-download" value="{{ $image->id }}">
-                        <x-icon src="download.svg" alt="" class="align-text-top" width="18"
-                            height="18" />
-                        <span class="display-block ms-2">Download</span>
-                    </a>
+                    <div class="col-md-5">
+                        <a href="{{ route('images.download', $image->id) }}"
+                            onclick="downloadsCount({{ $image->id }})" title="Download"
+                            class="btn btn-success d-flex align-items-center" id="download">
+                            <input type="hidden" id="input-download" value="{{ $image->id }}">
+                            <x-icon src="download.svg" alt="" class="align-text-top" width="18"
+                                height="18" />
+                            <span class="display-block ms-2">Download</span>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="bg-light mt-3 p-3 border">

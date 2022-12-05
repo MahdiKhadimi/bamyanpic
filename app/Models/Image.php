@@ -6,6 +6,7 @@ use auth;
 use App\Models\Like;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Favorite;
 use App\Models\Scopes\ImageSearchScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -34,6 +35,10 @@ class Image extends Model
         return $this->hasMany(Like::class,'image_id');
     }
     
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
     public static function makeDirectory(){
 
         $folder = 'images/'.date('Y/m/d');
@@ -140,6 +145,23 @@ class Image extends Model
         }
 
         return $likes->is_like;
+    }
+    
+    public function checkFavorite($image_id)
+    {
+       
+        $user_id = auth::user()->id;
+        
+        try{
+        $favorites = Favorite::where([
+            'image_id'=>$image_id,
+            'user_id'=>$user_id
+        ])->firstOrFail();
+        } catch(ModelNotFoundException $e){
+            return 0;
+        }
+
+        return $favorites->is_favorite;
     }
     
 }

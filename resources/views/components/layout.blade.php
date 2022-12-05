@@ -1,5 +1,5 @@
 @props([
-    'title'=>''
+    'title' => '',
 ])
 <!doctype html>
 <html lang="en">
@@ -21,22 +21,30 @@
             <a class="navbar-brand" href="{{ url('/') }}">
                 <x-icon src="logo.svg" class="d-inline-block align-text-top color-light" style="width: 25px" />
                 {{ ucfirst(config('app.name', 'Laravel')) }}
-            </a>  
-          <div class="container">
-                    
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            </a>
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <l class="nav-item"><a href="{{ route('images.index') }}" class="nav-link active">Images</a></l>
-                        <l class="nav-item"><a href="" class="nav-link">Favorite</a></l>
+                     
+                        <l class="nav-item"><a href="{{ url('/') }}" class="nav-link active">All Images</a>
+                        </l>
+                         <l class="nav-item"><a href="{{ route('images.index') }}" class="nav-link active">My Images</a>
+                        </l>
+                        <l class="nav-item">
+                        <a href="{{route('favorites.index')}}" class="nav-link">Favorite</a>
+                        </l>
 
                     </ul>
-                    
-                  
+
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -54,13 +62,14 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
@@ -79,12 +88,12 @@
                 <a href="{{ route('images.create') }}" class="btn btn-success">Create Image</a>
                 {{--  <a href='#' class="btn btn-outline-secondary me-2">Register</a>
                 <a href='#' class="btn btn-danger">Login</a>  --}}
-            </div>  
+        </div>
         </div>
     </nav>
     <section>
-    {{ $slot }}
-     
+        {{ $slot }}
+
     </section>
 
     <footer class="bg-light text-muted py-3 mt-5 border-top col-lg-12 col-md-12 col-sm-12 col-12">
@@ -101,5 +110,6 @@
     <script src="{{ asset('assets/js/npm.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-</body>  
+</body>
+
 </html>
