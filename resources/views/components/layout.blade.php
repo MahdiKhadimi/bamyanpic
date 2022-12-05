@@ -33,13 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                     
-                        <l class="nav-item"><a href="{{ url('/') }}" class="nav-link active">All Images</a>
+
+                        <l class="nav-item"><a href="{{ url('/') }}"
+                                class="nav-link {{ request()->path() == '/' ? 'active' : '' }}">All Images</a>
                         </l>
-                         <l class="nav-item"><a href="{{ route('images.index') }}" class="nav-link active">My Images</a>
+                        <l class="nav-item"><a href="{{ route('images.index') }}"
+                                class="nav-link {{ request()->path() == 'images' ? 'active' : '' }}">My Images</a>
                         </l>
                         <l class="nav-item">
-                        <a href="{{route('favorites.index')}}" class="nav-link">Favorite</a>
+                            <a href="{{ route('favorites.index') }}"
+                                class="nav-link {{ request()->path() == 'favorites' ? 'active' : '' }}">Favorite</a>
                         </l>
 
                     </ul>

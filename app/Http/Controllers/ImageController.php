@@ -20,6 +20,7 @@ class ImageController extends Controller
     }
 
     public function index(){
+       
         $images = Image::visibleFor(request()->user())->with(['comments','likes'])->latest()->paginate(15)->withQueryString();
         
         
