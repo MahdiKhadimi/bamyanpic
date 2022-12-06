@@ -33,7 +33,9 @@ Bamyanpic is a web app that is created by Laravel, in this app users can watch, 
 6. From the projects root folder run `php artisan migrate`
 7. From the projects root folder run `php artisan serve`
 8. From the projects root folder run `php artisan key:generate`
-9. From the projects root folder run `composer dump-autoload
+9. From the projects root folder run `php aritsan storage:link`
+10. Change `FILESYSTEM_DISK=local` to `FILESYSTEM_DISK=public` In the `.env`
+11. From the projects root folder run `composer dump-autoload
 
 ### Laravel Components Are Used In This Project
 
@@ -52,5 +54,6 @@ Bamyanpic is a web app that is created by Laravel, in this app users can watch, 
 -   Authorization By Gate and Policy
 -   Authentication By Laravel/ui package
 -   File Storage
+-   Laravel Component
 -   Event
 -   Relationship: (one to many, )
